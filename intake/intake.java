@@ -1,3 +1,6 @@
+import org.wpilib.math.util.Units;
+
+import com.ctre.phoenix6.controls.MotionMagicDutyCycle;
 import com.ctre.phoenix6.hardware.CANdi;
 import com.ctre.phoenix6.hardware.TalonFX;
 
@@ -18,17 +21,14 @@ public class intake {
         candi.getConfigurator().apply(IntakeConstants.CANDI_CONFIGURATION);
     }
 
-    public intakeExtend(){
-        armMotor.setControl(VoltageOut(armMotorVoltage));
+    public void intakeExtend(){
+        armMotor.setControl(new MotionMagicVoltage(Units.degreesToRotations(-90)));
     }
-    public intakeRetract(){
-        armMotor.setControl(VoltageOut(-armMotorVoltage));
+     public void intakeRetract(){
+        armMotor.setControl(new MotionMagicVoltage(Units.degreesToRotations(90)));
     }
-    public intakeAlgae(){
-        rollerMotor.setControl(VoltageOut(rollerVoltage));
-    }
-    public outtakeAlgae(){
-        rollerMotor.setContorl(VoltageOut(-rollerVoltage));
+    public void runIntake(){
+        rollerMotor.setContorl(VoltageOut(rollerVoltage));
     }
 
 }
